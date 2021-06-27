@@ -16,24 +16,24 @@ public class CardAssetManager : MonoBehaviour
     public Sprite getCardSprite(Suit suit, int number)
     {
         //Debug.Log("Getting asset for card: " + suit + number);
-        if ((number < 15 && number > 3) || suit == Suit.joker)
+        if ((number >= 0 && number <= 11) || suit == Suit.joker)
         {
             //Debug.Log("Requesting for " + number);
 
             switch (suit)
             {
                 case Suit.heart:
-                    return hearts[number-4];
+                    return hearts[number];
                 case Suit.diamond:
-                    return diamonds[number-4];
+                    return diamonds[number];
                 case Suit.club:
-                    return clubs[number-4];
+                    return clubs[number];
                 case Suit.spade:
-                    return spades[number-4];
+                    return spades[number];
                 case Suit.joker:
                     return joker;
                 default:
-                    Debug.Log(number - 4);
+                    Debug.Log(number);
                     return back;
             }
         } else

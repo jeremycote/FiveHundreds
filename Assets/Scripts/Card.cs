@@ -29,52 +29,56 @@ public class Card
         this.number = card;
         this.originalSuit = suit;
         this.sprite = GameObject.FindGameObjectsWithTag("CardAssetManager")[0].GetComponent<CardAssetManager>().getCardSprite(suit: suit, number: card);
-
+        GameController gameController = GameObject.FindGameObjectsWithTag("GameController")[0].GetComponent<GameController>();
+        if (gameController.isBidding != true) {
+            ConformToTrump();
+        }
     }
 
     public void ConformToTrump()
     {
-        if (number == 11)
-        {
-            GameController gameController = GameObject.FindGameObjectsWithTag("GameController")[0].GetComponent<GameController>();
-            if (suit == gameController.trump)
-            {
-                number = 16;
-            } else if (suit == Suit.joker) {
-                suit = gameController.trump;
-                number = 17;
-            } else
-            {
-                Suit altSuit = Suit.nil;
-                switch (gameController.trump)
-                {
-                    case Suit.heart:
-                        altSuit = Suit.diamond;
-                        break;
-                    case Suit.diamond:
-                        altSuit = Suit.heart;
-                        break;
-                    case Suit.club:
-                        altSuit = Suit.spade;
-                        break;
-                    case Suit.spade:
-                        altSuit = Suit.club;
-                        break;
-                    case Suit.joker:
-                        break;
-                    default:
-                        return;
-                }
+        GameController gameController = GameObject.FindGameObjectsWithTag("GameController")[0].GetComponent<GameController>();
 
-                if (suit == altSuit)
+        if (gameController.isBidding != true)
+        {
+            if (number == 8)
+            {
+                //Jack -> isBower
+                if (suit == gameController.trump)
                 {
-                    //Debug.Log("Aternate Bower");
-                    number = 15;
-                    suit = gameController.trump;
+                    number = 13;
                 } else
                 {
-                    //Debug.Log("Not Alternate, altSuit is " + altSuit + ". But card is " + suit);
+                    Suit altSuit = Suit.nil;
+                    switch (gameController.trump)
+                    {
+                        case Suit.heart:
+                            altSuit = Suit.diamond;
+                            break;
+                        case Suit.diamond:
+                            altSuit = Suit.heart;
+                            break;
+                        case Suit.club:
+                            altSuit = Suit.spade;
+                            break;
+                        case Suit.spade:
+                            altSuit = Suit.club;
+                            break;
+                        case Suit.joker:
+                            break;
+                        default:
+                            return;
+                    }
+                    if (suit == altSuit && altSuit != Suit.nil && altSuit != Suit.joker)
+                    {
+                        number = 12;
+                        suit = gameController.trump;
+                    }
                 }
+            } else if (suit == Suit.joker)
+            {
+                suit = gameController.trump;
+                number = 14;
             }
         }
     }

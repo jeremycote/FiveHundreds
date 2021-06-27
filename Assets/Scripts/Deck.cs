@@ -43,22 +43,22 @@ public class Deck : MonoBehaviour
     }
     public void restock()
     {
-        for (int n = 0; n < 10; n++)
+        for (int n = 0; n < 11; n++)
         {
-            //0..9 = 5,6,7,8,9,10,11,12,13,14
-            cards[n] = new Card(suit: Suit.heart, card: 5 + n);
+            //0..9 = 0,1,2,3,4,5,6,7,8,9,10
+            cards[n] = new Card(suit: Suit.heart, card: n);
             //10..19 = 5,6,7,8,9,10,11,12,13,14
-            cards[n + 10] = new Card(suit: Suit.diamond, card: 5 + n);
+            cards[n + 11] = new Card(suit: Suit.diamond, card: n);
             //20..29 = 5,6,7,8,9,10,11,12,13,14
-            cards[n + 20] = new Card(suit: Suit.club, card: 5 + n);
+            cards[n + 22] = new Card(suit: Suit.club, card: n);
             //30..39 = 5,6,7,8,9,10,11,12,13,14
-            cards[n + 30] = new Card(suit: Suit.spade, card: 5 + n);
+            cards[n + 33] = new Card(suit: Suit.spade, card: n);
 
         }
-        cards[40] = new Card(suit: Suit.heart, 4);
-        cards[41] = new Card(suit: Suit.diamond, 4);
-        cards[42] = new Card(suit: Suit.spade, 4);
-        cards[43] = new Card(suit: Suit.club, 4);
+        //cards[40] = new Card(suit: Suit.heart, 4);
+        //cards[41] = new Card(suit: Suit.diamond, 4);
+        //cards[42] = new Card(suit: Suit.spade, 4);
+        //cards[43] = new Card(suit: Suit.club, 4);
         cards[44] = new Card(suit: Suit.joker, card: 0);
     }
 }

@@ -12,7 +12,7 @@ public class ComAgent : Agent
     private GameController gameController;
     public int playerIndex;
     public int counter = 0;
-    private int limit = 59;
+    private int limit = 53;
     void Start()
     {
         gameController = GameObject.FindGameObjectsWithTag("GameController")[0].GetComponent<GameController>();
@@ -61,14 +61,20 @@ public class ComAgent : Agent
                 {
                     Debug.Log("No cards left");
                 } else {
-                    int choice = legalMoves.ToArray()[UnityEngine.Random.Range(0, legalMoves.Count)];
+                    //int choice = legalMoves.ToArray()[UnityEngine.Random.Range(0, legalMoves.Count)];
+                    int choice = legalMoves[0];
                     //Debug.Log("Picked: " + choice);
                     descreteActionsOut[0] = choice;
+                    Debug.Log("Computer requested for " + choice);
+                    if ( gameController.IsMoveLegal(gameController.IntToCard(choice)) == false) {
+                        Debug.Log("Computer chose illegal move! Choice is " + choice);
+                    }
+                    
                 }
                 
             }
         }
-
+        Debug.Log("action: " + descreteActionsOut[0]);
         //Debug.Log("Heuristic called");
 
     }
@@ -193,12 +199,12 @@ public class ComAgent : Agent
                     Card card = visualCard[i].GetComponent<CardVisual>().card;
                     if (gameController.CardToInt(card) == actionBuffers.DiscreteActions[0])
                     {
-                        Debug.Log("Starting click. Clicked on " + card.number + " of " + card.suit);
+                        Debug.Log("Starting click. Clicked on " + card.originalValue + " of " + card.originalSuit + ". The move is legal: " + gameController.IsMoveLegal(card) + ". As Int: " + gameController.CardToInt(card) + ". Request is: " + actionBuffers.DiscreteActions[0]);
                         visualCard[i].GetComponent<CardVisual>().CardClicked();
                         break;
                     } else
                     {
-                        Debug.Log(gameController.CardToInt(card) + " doesnt match: " + actionBuffers.DiscreteActions[0]);
+                        //Debug.Log(gameController.CardToInt(card) + " doesnt match: " + actionBuffers.DiscreteActions[0]);
                     }
                 }
                 

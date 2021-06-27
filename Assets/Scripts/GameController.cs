@@ -46,10 +46,12 @@ public class GameController : MonoBehaviour
     }
     public void Start()
     {
-
-        Debug.Log("num: " + IntToCard(56).number);
-        Debug.Log("num1: " + CardToInt(IntToCard(56)));
-        Debug.Log("suit: " + IntToCard(56).originalSuit);
+        Card tCard = new Card(Suit.joker, 0);
+        Debug.Log(CardToInt(card: tCard));
+        Debug.Log(IntToCard(CardToInt(card: tCard)).suit + " " + IntToCard(CardToInt(card: tCard)).number);
+        //Debug.Log("num: " + IntToCard(56).number);
+        //Debug.Log("num1: " + CardToInt(IntToCard(56)));
+        //Debug.Log("suit: " + IntToCard(56).originalSuit);
 
         StartGame();
     }
@@ -205,6 +207,7 @@ public class GameController : MonoBehaviour
             }
             else if (currentCards[i].suit == Suit.joker && firstMove.suit == trump)
             {
+                //Never triggered?
                 numberOfSameSuit++;
             }
         }
@@ -353,15 +356,15 @@ public class GameController : MonoBehaviour
                 agent[0].SetReward(1);
                 agent[2].SetReward(1);
 
-                agent[1].AddReward(-0.25f);
-                agent[3].AddReward(-0.25f);
+                agent[1].AddReward(-1f);
+                agent[3].AddReward(-1f);
                 break;
             case 1:
                 agent[1].SetReward(1);
                 agent[3].SetReward(1);
 
-                agent[0].AddReward(-0.25f);
-                agent[2].AddReward(-0.25f);
+                agent[0].AddReward(-1f);
+                agent[2].AddReward(-1f);
                 break;
             default:
                 break;
@@ -400,47 +403,300 @@ public class GameController : MonoBehaviour
 
     public Card IntToCard(int card)
     {
+        switch (card) {
+            case 0:
+                return new Card(suit: Suit.spade, card: 0);
+            case 1:
+                return new Card(suit: Suit.spade, card: 1);
+            case 2:
+                return new Card(suit: Suit.spade, card: 2);
+            case 3:
+                return new Card(suit: Suit.spade, card: 3);
+            case 4:
+                return new Card(suit: Suit.spade, card: 4);
+            case 5:
+                return new Card(suit: Suit.spade, card: 5);
+            case 6:
+                return new Card(suit: Suit.spade, card: 6);
+            case 7:
+                return new Card(suit: Suit.spade, card: 7);
+            case 8:
+                return new Card(suit: Suit.spade, card: 8);
+            case 9:
+                return new Card(suit: Suit.spade, card: 9);
+            case 10:
+                return new Card(suit: Suit.spade, card: 10);
+            case 11:
+                return new Card(suit: Suit.club, card: 0);
+            case 12:
+                return new Card(suit: Suit.club, card: 1);
+            case 13:
+                return new Card(suit: Suit.club, card: 2);
+            case 14:
+                return new Card(suit: Suit.club, card: 3);
+            case 15:
+                return new Card(suit: Suit.club, card: 4);
+            case 16:
+                return new Card(suit: Suit.club, card: 5);
+            case 17:
+                return new Card(suit: Suit.club, card: 6);
+            case 18:
+                return new Card(suit: Suit.club, card: 7);
+            case 19:
+                return new Card(suit: Suit.club, card: 8);
+            case 20:
+                return new Card(suit: Suit.club, card: 9);
+            case 21:
+                return new Card(suit: Suit.club, card: 10);
+            case 22:
+                return new Card(suit: Suit.diamond, card: 0);
+            case 23:
+                return new Card(suit: Suit.diamond, card: 1);
+            case 24:
+                return new Card(suit: Suit.diamond, card: 2);
+            case 25:
+                return new Card(suit: Suit.diamond, card: 3);
+            case 26:
+                return new Card(suit: Suit.diamond, card: 4);
+            case 27:
+                return new Card(suit: Suit.diamond, card: 5);
+            case 28:
+                return new Card(suit: Suit.diamond, card: 6);
+            case 29:
+                return new Card(suit: Suit.diamond, card: 7);
+            case 30:
+                return new Card(suit: Suit.diamond, card: 8);
+            case 31:
+                return new Card(suit: Suit.diamond, card: 9);
+            case 32:
+                return new Card(suit: Suit.diamond, card: 10);
+            case 33:
+                return new Card(suit: Suit.diamond, card: 0);
+            case 34:
+                return new Card(suit: Suit.heart, card: 1);
+            case 35:
+                return new Card(suit: Suit.heart, card: 2);
+            case 36:
+                return new Card(suit: Suit.heart, card: 3);
+            case 37:
+                return new Card(suit: Suit.heart, card: 4);
+            case 38:
+                return new Card(suit: Suit.heart, card: 5);
+            case 39:
+                return new Card(suit: Suit.heart, card: 6);
+            case 40:
+                return new Card(suit: Suit.heart, card: 7);
+            case 41:
+                return new Card(suit: Suit.heart, card: 8);
+            case 42:
+                return new Card(suit: Suit.heart, card: 9);
+            case 43:
+                return new Card(suit: Suit.heart, card: 10);
+            case 44:
+                return new Card(suit: Suit.joker, card: 0);
+            default:
+                Debug.LogError("Invalid card integer: " + card);
+                return new Card(suit: Suit.spade, card: 0);
+        }
+        /*
         //14
-        float rem = (float)card / 14;
+        float rem = (float)card / 10;
         float remF = (float)Math.Floor(rem);
         rem = (float)Math.Ceiling(rem);
+        //print(remF);
+        //print(rem);
 
         Card returnCard = new Card(suit: Suit.heart, card: 4);
-
+        //Debug.Log(remF);
         switch (rem)
         {
+            case 0:
+                returnCard = new Card(suit: Suit.spade, card: Convert.ToInt32(card - remF * 10));
+                break;
             case 1:
-                returnCard = new Card(suit: Suit.spade, card: Convert.ToInt32(card - remF * 14));
+                returnCard = new Card(suit: Suit.club, card: Convert.ToInt32(card - remF * 10));
                 break;
             case 2:
-                returnCard = new Card(suit: Suit.club, card: Convert.ToInt32(card - remF * 14));
+                returnCard = new Card(suit: Suit.diamond, card: Convert.ToInt32(card - remF * 10));
                 break;
             case 3:
-                returnCard = new Card(suit: Suit.diamond, card: Convert.ToInt32(card - remF * 14));
+                returnCard = new Card(suit: Suit.heart, card: Convert.ToInt32(card - remF * 10));
                 break;
             case 4:
-                returnCard = new Card(suit: Suit.heart, card: Convert.ToInt32(card - remF * 14));
-                break;
-            case 5:
-                returnCard = new Card(suit: Suit.joker, card: Convert.ToInt32(card - remF +14));
+                returnCard = new Card(suit: Suit.joker, card: 0);
                 break;
             default:
                 break;
         }
-        returnCard.ConformToTrump();
+        //returnCard.ConformToTrump();
         return returnCard;
+        */
     }
     public int CardToInt(Card card)
     {
-        //7 of spades: suit = 0. return = 7;
-        //7 of hearts: suit = 3. return = 14*3 + 7 = 49
-        //Ace of hearts: suit = 3. return = 14*3 + 14 = 56
-        int returnCard = 14 * Convert.ToInt32(card.originalSuit);
-        returnCard = returnCard + card.originalValue;
+
+        switch (card.originalSuit) {
+            case Suit.spade:
+                switch (card.originalValue) {
+                    case 0:
+                        return 0;
+                    case 1:
+                        return 1;
+                    case 2:
+                        return 2;
+                    case 3:
+                        return 3;
+                    case 4:
+                        return 4;
+                    case 5:
+                        return 5;
+                    case 6:
+                        return 6;
+                    case 7:
+                        return 7;
+                    case 8:
+                        return 8;
+                    case 9:
+                        return 9;
+                    case 10:
+                        return 10;
+                    default:
+                        Debug.Log("Illegal value");
+                        return 0;
+                }
+            case Suit.club:
+                switch (card.originalValue)
+                {
+                    case 0:
+                        return 11;
+                    case 1:
+                        return 12;
+                    case 2:
+                        return 13;
+                    case 3:
+                        return 14;
+                    case 4:
+                        return 15;
+                    case 5:
+                        return 16;
+                    case 6:
+                        return 17;
+                    case 7:
+                        return 18;
+                    case 8:
+                        return 19;
+                    case 9:
+                        return 20;
+                    case 10:
+                        return 21;
+                    default:
+                        Debug.Log("Illegal value");
+                        return 0;
+                }
+            case Suit.diamond:
+                switch (card.originalValue)
+                {
+                    case 0:
+                        return 22;
+                    case 1:
+                        return 23;
+                    case 2:
+                        return 24;
+                    case 3:
+                        return 25;
+                    case 4:
+                        return 26;
+                    case 5:
+                        return 27;
+                    case 6:
+                        return 28;
+                    case 7:
+                        return 29;
+                    case 8:
+                        return 30;
+                    case 9:
+                        return 31;
+                    case 10:
+                        return 32;
+                    default:
+                        Debug.Log("Illegal value");
+                        return 0;
+                }
+            case Suit.heart:
+                switch (card.originalValue)
+                {
+                    case 0:
+                        return 33;
+                    case 1:
+                        return 34;
+                    case 2:
+                        return 35;
+                    case 3:
+                        return 36;
+                    case 4:
+                        return 37;
+                    case 5:
+                        return 38;
+                    case 6:
+                        return 39;
+                    case 7:
+                        return 40;
+                    case 8:
+                        return 41;
+                    case 9:
+                        return 42;
+                    case 10:
+                        return 43;
+                    default:
+                        Debug.Log("Illegal value");
+                        return 0;
+                }
+            case Suit.nil:
+                Debug.Log("Nil card suit is not possible");
+                return 0;
+            case Suit.joker:
+                return 44;
+            default:
+                Debug.Log("Unkown suit");
+                return 0;
+        }
+
+        
+        /*
+         * Rewritten as Switch because logic doesn't work
+        //10 of clubs: suit = 1. Number = 7
+
+        int returnCard = 0;
         if (card.originalSuit == Suit.joker)
         {
-            returnCard = returnCard - 14;
+            returnCard = 40;
+        } else if (card.originalSuit == Suit.club && card.originalValue == 10)
+        {
+            returnCard = 10 * Convert.ToInt32(card.originalSuit);
+            returnCard = returnCard + card.originalValue;
+            Debug.Log("For the Ace of Clubs -> int value is " + returnCard);
         }
+        else
+        {
+            returnCard = 10 * Convert.ToInt32(card.originalSuit);
+            returnCard = returnCard + card.originalValue;
+        }
+        
+        
         return returnCard;
+        */
     }
 }
+
+/*
+ *spade = 0,
+    club = 1,
+    diamond = 2,
+    heart = 3,
+    nil = 4,
+    joker = 5
+ * cards: 5,6,7,8,9,10,11,12,13,14
+ * int: 0,1,2,3,4,5,6,7,8,9
+ *
+ * 41 cards in deck
+ */
