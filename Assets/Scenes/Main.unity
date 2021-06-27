@@ -612,6 +612,10 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6897682707901430818, guid: c9833c918854a414a8cdefaa594eb554, type: 3}
+      propertyPath: m_Model
+      value: 
+      objectReference: {fileID: 5022602860645237092, guid: 75f474afef7a71949a8a42f397fb8190, type: 3}
+    - target: {fileID: 6897682707901430818, guid: c9833c918854a414a8cdefaa594eb554, type: 3}
       propertyPath: m_BehaviorName
       value: 500Player
       objectReference: {fileID: 0}
@@ -927,6 +931,10 @@ PrefabInstance:
       propertyPath: TeamId
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6897682707901430818, guid: c9833c918854a414a8cdefaa594eb554, type: 3}
+      propertyPath: m_Model
+      value: 
+      objectReference: {fileID: 5022602860645237092, guid: 75f474afef7a71949a8a42f397fb8190, type: 3}
     - target: {fileID: 6897682707901430818, guid: c9833c918854a414a8cdefaa594eb554, type: 3}
       propertyPath: m_BehaviorName
       value: 500Player
@@ -2614,8 +2622,8 @@ MonoBehaviour:
   - {fileID: 1797899594}
   - {fileID: 1791714742}
   - {fileID: 565020775}
-  isHuman: 00000000
-  humanObserver: 0
+  isHuman: 01000000
+  humanObserver: 1
   animSpeedBot: 0.01
   animSpeedHuman: 0.75
 --- !u!4 &1366327859
@@ -2945,6 +2953,10 @@ PrefabInstance:
       propertyPath: TeamId
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 6897682707901430818, guid: c9833c918854a414a8cdefaa594eb554, type: 3}
+      propertyPath: m_Model
+      value: 
+      objectReference: {fileID: 5022602860645237092, guid: 75f474afef7a71949a8a42f397fb8190, type: 3}
     - target: {fileID: 6897682707901430818, guid: c9833c918854a414a8cdefaa594eb554, type: 3}
       propertyPath: m_BehaviorName
       value: 500Player
@@ -4462,6 +4474,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 6897682707901430818, guid: c9833c918854a414a8cdefaa594eb554, type: 3}
+      propertyPath: m_Model
+      value: 
+      objectReference: {fileID: 5022602860645237092, guid: 75f474afef7a71949a8a42f397fb8190, type: 3}
+    - target: {fileID: 6897682707901430818, guid: c9833c918854a414a8cdefaa594eb554, type: 3}
       propertyPath: m_BehaviorName
       value: 500Player
       objectReference: {fileID: 0}
@@ -4539,7 +4555,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6897682707901430822, guid: c9833c918854a414a8cdefaa594eb554, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c9833c918854a414a8cdefaa594eb554, type: 3}
